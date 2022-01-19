@@ -2,8 +2,9 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 plt.close("all")
-response = requests.get("https://data.princeedwardisland.ca/resource/bpnh-prdc.json")
-res = pd.DataFrame(response.json())
+response = pd.read_csv('school.csv')
+res = pd.DataFrame(response)
+
 is_on = True
 
 while is_on:
@@ -18,9 +19,9 @@ while is_on:
         for (index, row) in res.iterrows():
             print(row)
     if choice == '3':
-        res['students'] = res['students'].astype(int);
+        res['Students'] = res['Students'].astype(int);
 
-        res["students"].plot(y='students')
+        res["Students"].plot(y='Students')
         plt.show()
 
     if choice == '4':
