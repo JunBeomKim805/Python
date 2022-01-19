@@ -1,7 +1,9 @@
 import requests
 import pandas as pd
+import matplotlib as mpl
 import matplotlib.pyplot as plt
-plt.close("all")
+mpl.use('Agg')
+
 response = pd.read_csv('school.csv')
 res = pd.DataFrame(response)
 res_sort = res.sort_values(by=['REF_DATE'])
@@ -22,8 +24,8 @@ while is_on:
             print(row)
         print('sorted by year')
     if choice == '3':
-        res_sort.plot(stacked=True, x='REF_DATE', y='VALUE')
-        plt.show()
+        res_sort.plot( x='REF_DATE', y='VALUE')
+        plt.savefig('graph.png')
 
     if choice == '4':
         is_on=False
