@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 plt.close("all")
 response = pd.read_csv('school.csv')
 res = pd.DataFrame(response)
+res_sort = res.sort_values(by=['REF_DATE'])
+
 
 is_on = True
 
@@ -16,12 +18,11 @@ while is_on:
                 print(row)
 
     if choice == '2':
-        for (index, row) in res.iterrows():
+        for (index, row) in res_sort.iterrows():
             print(row)
+        print('sorted by year')
     if choice == '3':
-        res['Students'] = res['Students'].astype(int);
-
-        res["Students"].plot(y='Students')
+        res_sort.plot(stacked=True, x='REF_DATE', y='VALUE')
         plt.show()
 
     if choice == '4':
